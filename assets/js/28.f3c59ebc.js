@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[28],{507:function(t,n,e){"use strict";e.r(n);var s=e(20),u=Object(s.a)({},(function(){var t=this.$createElement,n=this._self._c||t;return n("ContentSlotsDistributor",{attrs:{"slot-key":this.$parent.slotKey}},[n("p",[this._v("该分类用于记录一些常用的操作，例如ubuntu换源，不用每次都去搜索各种镜像源等等。")])])}),[],!1,null,null,null);n.default=u.exports}}]);

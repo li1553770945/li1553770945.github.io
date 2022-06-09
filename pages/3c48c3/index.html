@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Nginx多种配置样例，HTTPS配置与HTTP自动重定向 | PeaceSheep&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/img/favicon.ico">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b9293e9c75e6f1d4f3c566bcbecf8cd5";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+     </script>
+    <meta name="description" content="">
+    <meta name="keywords" content="个人技术博客,前端,前端开发,web前端后端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown,C++,C,django">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/assets/css/0.styles.827fa35d.css" as="style"><link rel="preload" href="/assets/js/app.1bfd90cc.js" as="script"><link rel="preload" href="/assets/js/2.80afaa97.js" as="script"><link rel="preload" href="/assets/js/3.3ddce5a2.js" as="script"><link rel="preload" href="/assets/js/30.8777430f.js" as="script"><link rel="prefetch" href="/assets/js/10.75a4d0fd.js"><link rel="prefetch" href="/assets/js/11.98a2ea75.js"><link rel="prefetch" href="/assets/js/12.2b58d412.js"><link rel="prefetch" href="/assets/js/13.cf68c041.js"><link rel="prefetch" href="/assets/js/14.b77810d2.js"><link rel="prefetch" href="/assets/js/15.4ca9a71a.js"><link rel="prefetch" href="/assets/js/16.47b4411f.js"><link rel="prefetch" href="/assets/js/17.49eda347.js"><link rel="prefetch" href="/assets/js/18.0d91533b.js"><link rel="prefetch" href="/assets/js/19.f718482e.js"><link rel="prefetch" href="/assets/js/20.aed61d21.js"><link rel="prefetch" href="/assets/js/21.4bd802e8.js"><link rel="prefetch" href="/assets/js/22.4124c047.js"><link rel="prefetch" href="/assets/js/23.d9e1e2ab.js"><link rel="prefetch" href="/assets/js/24.18457d5c.js"><link rel="prefetch" href="/assets/js/25.a1c2adbb.js"><link rel="prefetch" href="/assets/js/26.8ebdf44c.js"><link rel="prefetch" href="/assets/js/27.0f4711ed.js"><link rel="prefetch" href="/assets/js/28.f3c59ebc.js"><link rel="prefetch" href="/assets/js/29.9ede86d9.js"><link rel="prefetch" href="/assets/js/31.52500a41.js"><link rel="prefetch" href="/assets/js/32.b9ec706f.js"><link rel="prefetch" href="/assets/js/33.ee1303f4.js"><link rel="prefetch" href="/assets/js/34.297f7187.js"><link rel="prefetch" href="/assets/js/35.4a463165.js"><link rel="prefetch" href="/assets/js/36.3d9bd1f3.js"><link rel="prefetch" href="/assets/js/37.73f1430d.js"><link rel="prefetch" href="/assets/js/38.3f794bb5.js"><link rel="prefetch" href="/assets/js/39.3aa54d89.js"><link rel="prefetch" href="/assets/js/4.2a61765e.js"><link rel="prefetch" href="/assets/js/40.3e7e62b8.js"><link rel="prefetch" href="/assets/js/41.3c48f487.js"><link rel="prefetch" href="/assets/js/42.eaabb065.js"><link rel="prefetch" href="/assets/js/5.c2c1a76b.js"><link rel="prefetch" href="/assets/js/6.15ab528d.js"><link rel="prefetch" href="/assets/js/7.ebcf132a.js"><link rel="prefetch" href="/assets/js/8.573d18c0.js"><link rel="prefetch" href="/assets/js/9.99a0a85e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.827fa35d.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://cdn.jsdelivr.net/gh/li1553770945/images/左1-svg格式.svg" alt="PeaceSheep's blog" class="logo"> <span class="site-name can-hide">PeaceSheep's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div><div class="nav-item"><a href="/links/" class="nav-link">相关链接</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div> <a href="https://github.com/li1553770945" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="https://cdn.jsdelivr.net/gh/li1553770945/images/头像.jpg"> <div class="blogger-info"><h3>PeaceSheep</h3> <span>以最简洁、易懂的话解决问题</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div><div class="nav-item"><a href="/links/" class="nav-link">相关链接</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div> <a href="https://github.com/li1553770945" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/pages/4b5f52/" class="sidebar-link">01 说明</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span> 环境安装与配置</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/94d86e/" class="sidebar-link">ubuntu换源</a></li><li><a href="/pages/3c48c3/" aria-current="page" class="active sidebar-link">Nginx多种配置样例，HTTPS配置与HTTP自动重定向</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/3c48c3/#https-http自动重定向" class="sidebar-link">HTTPS,HTTP自动重定向</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#静态文件" class="sidebar-link">静态文件</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#转发请求" class="sidebar-link">转发请求</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#文件下载" class="sidebar-link">文件下载</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#大小相关" class="sidebar-link">大小相关</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/3c48c3/#设置最大请求体" class="sidebar-link">设置最大请求体</a></li></ul></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#超时设置" class="sidebar-link">超时设置</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/3c48c3/#client-header-timeout" class="sidebar-link">clientheadertimeout</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#client-body-timeout" class="sidebar-link">clientbodytimeout</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#keepalive-timeout" class="sidebar-link">keepalive_timeout</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#lingering-timeout" class="sidebar-link">lingering_timeout</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#resolver-timeout" class="sidebar-link">resolver_timeout</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#proxy-connect-timeout" class="sidebar-link">proxyconnecttimeout</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#proxy-read-timeout" class="sidebar-link">proxyreadtimeout</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#proxy-send-timeout" class="sidebar-link">proxysendtimeout</a></li><li class="sidebar-sub-header"><a href="/pages/3c48c3/#proxy-upstream-fail-timeout-fail-timeout" class="sidebar-link">proxyupstreamfailtimeout（failtimeout）</a></li></ul></li></ul></li><li><a href="/pages/292cb3/" class="sidebar-link">centos安装配置docker</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span> git</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-d5e9d2e6><div class="articleInfo" data-v-d5e9d2e6><ul class="breadcrumbs" data-v-d5e9d2e6><li data-v-d5e9d2e6><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-d5e9d2e6></a></li> <li data-v-d5e9d2e6><a href="/categories/?category=%20%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C" title="分类" data-v-d5e9d2e6> 常用操作</a></li><li data-v-d5e9d2e6><a href="/categories/?category=%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE" title="分类" data-v-d5e9d2e6> 环境安装与配置</a></li></ul> <div class="info" data-v-d5e9d2e6><div title="作者" class="author iconfont icon-touxiang" data-v-d5e9d2e6><a href="https://github.com/li1553770945" target="_blank" title="作者" class="beLink" data-v-d5e9d2e6>PeaceSheep</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-d5e9d2e6><a href="javascript:;" data-v-d5e9d2e6>2022-04-02</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABKFJREFUSA3tVl1oFVcQnrMbrak3QUgkya1akpJYcrUtIqW1JvFBE9LiQ5v6JmJpolbMg32rVrhgoYK0QiMY6i9Y6EMaW5D+xFJaTYItIuK2Kr3+BJNwkxBj05sQY3b3nM6cs2dv9t7NT/vQJw/sndk5M/PNzJkzewGerP+pAmy+ON8lLzUJgA8ZYxYIYZmGYRnctDaWvJJAmTtfP1pvXsBCCPP8QFcCaRkZYACgDZFO4stNIcBCajEOlmmC9XpJ9bAGCaPaPmzPl32dvLSVu3BWCTQs0XQQ6g0DYgwLIoAZbBCdW/i+781o1VVlm/410mw4h06Y7bIPHNyWDyL4FHkX03Q8SrzNhZTZriieckWt7cL6MM85YcLpsi/7O9/iXFT6MswI0DmmpkSaJ0qLxFIm3+i1THHB3zmBH3PYx9CcykcLOeQVVa7QtdxTgQgEleX2AjHYfwA+2ddV77ruGoJUbhGDI09YSNXyMpUt5ylOzxgbUmtOp7NmbNt8v3arjTBfYELmLUV+M+nSawNNAUqpT3ClJWg5I3BLT+cGW/DXNGCa6tx1aakCGEigArTn4TDIPdrXXYKCZNrHLMCOEPvHBlLQ99s9eHB7EB6NTki73CVPQ2F5MSx/uRQixfmq7rK0wYD8w8E905bnPDfwoWs/rfv93NWN/ZfvwsLIU7A09gxECyISeGJkHAau98L97tuw7NXnoPyNF8FcYGLGKsOs0mN3OEyec9esGW/ZEl945dTP34wlR2FZVQWU1q0Cw8Tr7p+hgLLNL0FPxx/Q35mA8aEUrH6nCgwEl0tn7wUiZYJnNRh6DK4UH/k0lfyrsBKdPVv/AriGIQcEDQZ65LBAGe2Rzui9Ybjz7XUppz1/uKBbyVPGkN3ZAeC6hr0x7Nr38N5+EqkoOm17xpoqR9ohQF55ERSvr4Dkr3chNfC3DMzGJlNBElW8w9nsGQvhNGIzDkXzCg8cLK951xHsFBlTJspJNi3ZFIMF2AeDV3q8DNOB+YHi6QTrChDIWDBRi5U5f+ZMfJLu3ccrqxtdxk4SKH336LFxSmkqefwU5T8fhdSdQf9IVKD6aNiwI/hnmcAZ91isYMJIaCUCx9W098+LgruikeTqzqqxKPUwqJyCPJiyemVVZBOijDGjD38Os0jOiSPL1z3SPjXNANbiNPXAdzTfukjjuknNBbyz3nwgTd3AVFqUJ5hpHlq9MveLnWwttUfoygBmvVjuikxND3znrhsELnZk7k+OjIGxeNEkomyLVta0xxn+HZhjBc4YZ/AFjHjz9u3xRZl2BN4aq9nFwWh16IrQ1aHHEd3j1+4/dB9OtH4e29A2H1DyHQRmOSfQZ1Fy7MHBTGB6J/Djq6p3OxyO2cB+4Car7v/o3GXgfAkj23+x9ID1Teoamo/SXcbvSf2PX7Vc8DdCmE1vN9di+32P9/5YR3vLnhCVGUWBjEkr3yh4H8v9CzmsbdhzOKzsJKM90iFdaTMjRPhGVsakRvOaRidljo6H6G7j+ctrJpsP+4COhDIl0La2+FS4+5mlocBaXY5QnGZysIBYoeSsl5qQzrSj/cgNrfuEzlWBfwA+EjrZyWUvpAAAAABJRU5ErkJggg==">Nginx多种配置样例，HTTPS配置与HTTP自动重定向<!----></h1> <!----> <div class="theme-vdoing-content content__default"><p>这是一份NGINX的样例配置。可以直接参照这些样例进行配置。
+</p> <h2 id="https-http自动重定向"><a href="#https-http自动重定向" class="header-anchor">#</a> HTTPS,HTTP自动重定向</h2> <div class="language- line-numbers-mode"><pre class="language-text"><code>    server { # 该server表示80端口自动重定向
+        listen 80;
+        server_name _; # 根据需要替换你的server_name
+        rewrite ^(.*)$ https://$host$1 permanent;
+    }
+    server {
+        listen       443 default_server;  #监听443端口
+        listen       [::]:443 default_server;
+        server_name  _;
+        ssl on;
+        ssl_certificate  /root/card/XXX.pem;   #ssl证书的pem文件路径
+        ssl_certificate_key /root/card/XXX.key;  #ssl证书的key文件路径
+        include /etc/nginx/default.d/*.conf;
+        location / { # 静态文件
+            root /root/dist;
+            index index.html;
+            try_files $uri $uri/ /index.html; #解决VUE刷新404问题
+        }
+        
+       
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+    }
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><h2 id="静态文件"><a href="#静态文件" class="header-anchor">#</a> 静态文件</h2> <div class="language- line-numbers-mode"><pre class="language-text"><code>location / { # 静态文件
+    root /root/dist;
+    index index.html;
+    try_files $uri $uri/ /index.html; #解决VUE刷新404问题
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h2 id="转发请求"><a href="#转发请求" class="header-anchor">#</a> 转发请求</h2> <div class="language- line-numbers-mode"><pre class="language-text"><code>location /api{
+    proxy_pass http://localhost:8001/api; # 表示后端重定向端口
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="文件下载"><a href="#文件下载" class="header-anchor">#</a> 文件下载</h2> <div class="language- line-numbers-mode"><pre class="language-text"><code> location / {
+    autoindex on;
+    autoindex_exact_size off;
+    autoindex_localtime on; 
+    charset utf-8; # 修复中文文件乱码问题
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>使用这种方式会自动生成如下页面：</p> <p><img src="https://cdn.jsdelivr.net/gh/li1553770945/images/20220402210405.png" alt=""></p> <h2 id="大小相关"><a href="#大小相关" class="header-anchor">#</a> 大小相关</h2> <h3 id="设置最大请求体"><a href="#设置最大请求体" class="header-anchor">#</a> 设置最大请求体</h3> <p>如果您的服务器有上传文件功能，且出现了413错误，有可能是请求体超过大小限制导致的，需要添加如下配置：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>client_max_body_size 8m;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="超时设置"><a href="#超时设置" class="header-anchor">#</a> 超时设置</h2> <h3 id="client-header-timeout"><a href="#client-header-timeout" class="header-anchor">#</a> client_header_timeout</h3> <p>语法 client_header_timeout time
+默认值 60s
+上下文 http server
+说明 指定等待client发送一个请求头的超时时间（例如：GET / HTTP/1.1）.仅当在一次read中，没有收到请求头，才会算成超时。如果在超时时间内，client没发送任何东西，nginx返回HTTP状态码408(“Request timed out”)</p> <h3 id="client-body-timeout"><a href="#client-body-timeout" class="header-anchor">#</a> client_body_timeout</h3> <p>语法 client_body_timeout time
+默认值 60s
+上下文 http server location
+说明 该指令设置请求体（request body）的读超时时间。仅当在一次readstep中，没有得到请求体，就会设为超时。超时后，nginx返回HTTP状态码408(“Request timed out”)</p> <h3 id="keepalive-timeout"><a href="#keepalive-timeout" class="header-anchor">#</a> keepalive_timeout</h3> <p>语法 keepalive_timeout timeout [ header_timeout ]
+默认值 75s
+上下文 http server location
+说明 第一个参数指定了与client的keep-alive连接超时时间。服务器将会在这个时间后关闭连接。可选的第二个参数指定了在响应头Keep-Alive: timeout=time中的time值。这个头能够让一些浏览器主动关闭连接，这样服务器就不必要去关闭连接了。没有这个参数，nginx不会发送Keep-Alive响应头（尽管并不是由这个头来决定连接是否“keep-alive”）
+两个参数的值可并不相同</p> <p>注意不同浏览器怎么处理“keep-alive”头：</p> <ul><li>MSIE和Opera忽略掉&quot;Keep-Alive: timeout=&lt; N &gt;&quot; header.</li> <li>MSIE保持连接大约60-65秒，然后发送TCP RST</li> <li>Opera永久保持长连接</li> <li>Mozilla保持N+x(x为大概0-10的随机数)</li> <li>Konqueror保持长连接N秒</li></ul> <h3 id="lingering-timeout"><a href="#lingering-timeout" class="header-anchor">#</a> lingering_timeout</h3> <p>语法 lingering_timeout time
+默认值 5s
+上下文 http server location
+说明 lingering_close生效后，在关闭连接前，会检测是否有用户发送的数据到达服务器，如果超过lingering_timeout时间后还没有数据可读，就直接关闭连接；否则，必须在读取完连接缓冲区上的数据并丢弃掉后才会关闭连接。</p> <h3 id="resolver-timeout"><a href="#resolver-timeout" class="header-anchor">#</a> resolver_timeout</h3> <p>语法 resolver_timeout time
+默认值 30s
+上下文 http server location
+说明 该指令设置DNS解析超时时间</p> <h3 id="proxy-connect-timeout"><a href="#proxy-connect-timeout" class="header-anchor">#</a> proxy_connect_timeout</h3> <p>语法 proxy_connect_timeout time
+默认值 60s
+上下文 http server location
+说明 该指令设置与upstream server的连接超时时间，有必要记住，这个超时不能超过75秒。
+这个不是等待后端返回页面的时间，那是由proxy_read_timeout声明的。如果你的upstream服务器起来了，但是hanging住了（例如，没有足够的线程处理请求，所以把你的请求放到请求池里稍后处理），那么这个声明是没有用的，由于与upstream服务器的连接已经建立了。</p> <h3 id="proxy-read-timeout"><a href="#proxy-read-timeout" class="header-anchor">#</a> proxy_read_timeout</h3> <p>语法 proxy_read_timeout time
+默认值 60s
+上下文 http server location
+说明 该指令设置与代理服务器的读超时时间。它决定了nginx会等待多长时间来获得请求的响应。这个时间不是获得整个response的时间，而是两次reading操作的时间。</p> <h3 id="proxy-send-timeout"><a href="#proxy-send-timeout" class="header-anchor">#</a> proxy_send_timeout</h3> <p>语法 proxy_send_timeout time
+默认值 60s
+上下文 http server location
+说明 这个指定设置了发送请求给upstream服务器的超时时间。超时设置不是为了整个发送期间，而是在两次write操作期间。如果超时后，upstream没有收到新的数据，nginx会关闭连接</p> <h3 id="proxy-upstream-fail-timeout-fail-timeout"><a href="#proxy-upstream-fail-timeout-fail-timeout" class="header-anchor">#</a> proxy_upstream_fail_timeout（fail_timeout）</h3> <p>语法 server address [fail_timeout=30s]
+默认值 10s
+上下文 upstream
+说明 Upstream模块下 server指令的参数，设置了某一个upstream后端失败了指定次数（max_fails）后，该后端不可操作的时间，默认为10秒</p> <div class="custom-block tip"><p class="custom-block-title">参考资料</p> <p><a href="https://www.cnblogs.com/lemon-flm/p/8352194.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/lemon-flm/p/8352194.html<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div></div></div> <!----> <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2022/05/11, 15:36:36</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/pages/94d86e/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">ubuntu换源</div></a> <a href="/pages/292cb3/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">centos安装配置docker</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/pages/94d86e/" class="prev">ubuntu换源</a></span> <span class="next"><a href="/pages/292cb3/">centos安装配置docker</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/pages/1c959d/"><div>
+            简历管理系统——API列表
+            <!----></div></a> <span class="date">06-08</span></dt></dl><dl><dd>02</dd> <dt><a href="/pages/94888b/"><div>
+            C++实现发送SYN的端口扫描
+            <!----></div></a> <span class="date">06-07</span></dt></dl><dl><dd>03</dd> <dt><a href="/pages/8a5c18/"><div>
+            Visual Studio莫名报链接器错误的BUG
+            <!----></div></a> <span class="date">06-02</span></dt></dl> <dl><dd></dd> <dt><a href="/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:1553770945@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/li1553770945" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://www.zhihu.com/people/li-ya-zhu-19-52" title="知乎" target="_blank" class="iconfont icon-zhihu"></a></div> 
+    Copyright © 2022-2023
+    <span>PeaceSheep</span> <br> <a href="https://beian.miit.gov.cn" target="_blank">冀ICP备2022004632号-1</a></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"><div></div></div></div>
+    <script src="/assets/js/app.1bfd90cc.js" defer></script><script src="/assets/js/2.80afaa97.js" defer></script><script src="/assets/js/3.3ddce5a2.js" defer></script><script src="/assets/js/30.8777430f.js" defer></script>
+  </body>
+</html>
